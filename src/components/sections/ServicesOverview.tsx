@@ -22,7 +22,7 @@ const easeOut = [0.16, 1, 0.3, 1] as const;
  */
 export function ServicesOverview() {
   // Group services by category, preserving a stable category order.
-  const grouped = (["marketing", "development", "security"] as ServiceCategory[])
+  const grouped = (["marketing", "development", "security", "cloud"] as ServiceCategory[])
     .map((cat) => ({
       category: cat,
       theme: categoryThemes[cat],

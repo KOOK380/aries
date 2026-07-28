@@ -23,6 +23,11 @@ import {
   Bug,
   Cloud,
   Cpu,
+  Server,
+  HardDrive,
+  AtSign,
+  Network,
+  Gauge,
   CheckCircle2,
   type LucideIcon,
 } from "lucide-react";
@@ -32,7 +37,7 @@ import {
  * accent color, hero pattern) so service pages within a category share a look
  * while the three categories feel visually distinct from one another.
  */
-export type ServiceCategory = "marketing" | "development" | "security";
+export type ServiceCategory = "marketing" | "development" | "security" | "cloud";
 
 export interface CategoryTheme {
   /** Tailwind gradient classes for hero accents, buttons, icon badges. */
@@ -68,6 +73,13 @@ export const categoryThemes: Record<ServiceCategory, CategoryTheme> = {
     label: "Security",
     ring: "ring-emerald-500/40",
     colors: ["#10b981", "#0d9488"],
+  },
+  cloud: {
+    gradient: "from-amber-500 to-orange-600",
+    accent: "text-amber-600",
+    label: "Cloud & AI",
+    ring: "ring-amber-500/40",
+    colors: ["#f59e0b", "#ea580c"],
   },
 };
 
@@ -918,6 +930,537 @@ export const serviceDetails: Record<string, ServiceDetail> = {
       { question: "Can you help with SOC 2?", answer: "Yes. We guide you through SOC 2 readiness - implementing the controls, documenting policies, and preparing you for a successful audit with a certified assessor." },
       { question: "Can you help us prepare for SOC 2?", answer: "Yes. We guide the full SOC 2 readiness journey - implementing technical controls, drafting policies, and preparing you for a successful audit with an accredited assessor." },
       { question: "Do you handle data subject requests?", answer: "We implement the tooling and workflows to handle GDPR/CCPA data subject requests - access, deletion, and portability - so you can respond to requests within the legal timeframes." },
+    ],
+  },
+
+  /* ================================================================== */
+  /* CLOUD & AI                                                         */
+  /* ================================================================== */
+  "cloud-hosting": {
+    id: "cloud-hosting",
+    category: "cloud",
+    tagline: "Scalable, reliable cloud infrastructure that grows with you.",
+    overview:
+      "Cloud hosting gives your applications the elasticity, reliability and global reach that traditional hosting can't match. We design, deploy and manage cloud infrastructure on AWS, Azure and Google Cloud - so your workloads scale automatically, stay highly available, and only cost what you actually use.",
+    metrics: [
+      { value: "99.99%", label: "Uptime SLA" },
+      { value: "<50ms", label: "Global latency" },
+      { value: "-40%", label: "Infrastructure cost" },
+    ],
+    whyItMatters:
+      "The cloud turns infrastructure from a fixed cost into a flexible one. You scale up for traffic spikes without buying servers, recover instantly from failures, and pay only for what you use - while reaching customers anywhere in the world.",
+    howItWorks: [
+      "We start by assessing your workloads and choosing the right cloud provider and architecture - whether that's serverless, containers, or traditional VMs - based on your traffic, budget and compliance needs.",
+      "We design for high availability across multiple regions and availability zones, with auto-scaling, load balancing, and automated failover so your service stays up no matter what happens.",
+      "We implement cost optimization from day one - right-sizing resources, reserved instances, and automated scaling - so you never overpay for capacity you don't need.",
+    ],
+    features: [
+      { title: "Multi-cloud", description: "AWS, Azure and Google Cloud expertise with vendor-neutral architecture.", icon: Cloud },
+      { title: "Auto-scaling", description: "Resources scale up and down automatically based on real-time demand.", icon: TrendingUp },
+      { title: "High availability", description: "Multi-region deployment with automated failover and 99.99% uptime.", icon: ShieldCheck },
+      { title: "Global CDN", description: "Edge delivery network for fast loads anywhere in the world.", icon: Globe },
+      { title: "Cost optimization", description: "Right-sizing, reserved capacity and spend monitoring to cut waste.", icon: Award },
+      { title: "Monitoring", description: "24/7 infrastructure monitoring with proactive alerting.", icon: BarChart3 },
+    ],
+    useCases: [
+      "SaaS products needing elastic scaling",
+      "E-commerce stores with traffic spikes",
+      "Startups avoiding upfront hardware costs",
+      "Enterprises migrating off on-prem servers",
+    ],
+    process: [
+      { step: "01", title: "Assess", description: "Workload analysis, provider selection and architecture design." },
+      { step: "02", title: "Migrate", description: "Move workloads with minimal downtime and data integrity." },
+      { step: "03", title: "Optimize", description: "Right-size resources and implement auto-scaling." },
+      { step: "04", title: "Manage", description: "Ongoing monitoring, backups and cost management." },
+    ],
+    benefits: [
+      { title: "Infinite scale", description: "Handle any traffic load without provisioning hardware.", icon: TrendingUp },
+      { title: "Pay for use", description: "Only pay for the resources you actually consume.", icon: Award },
+      { title: "Always available", description: "Multi-zone redundancy keeps you online through failures.", icon: ShieldCheck },
+      { title: "Global reach", description: "Deploy close to users worldwide for low latency.", icon: Globe },
+    ],
+    outcomes: [
+      "Infrastructure that scales automatically with demand",
+      "Higher uptime with multi-region redundancy",
+      "Lower costs through pay-per-use pricing",
+      "Global performance via edge delivery",
+    ],
+    deliverables: [
+      "Cloud architecture design",
+      "Migration and deployment",
+      "Auto-scaling configuration",
+      "Cost optimization report",
+      "24/7 monitoring setup",
+    ],
+    faq: [
+      { question: "Which cloud provider should we use?", answer: "It depends on your needs. AWS has the broadest service range, Azure integrates deeply with Microsoft stacks, and Google Cloud leads in data/AI. We're vendor-neutral and recommend the best fit, or a multi-cloud mix." },
+      { question: "Can you migrate our existing servers?", answer: "Yes. We handle full migrations from on-premise or other providers with minimal downtime, validating data integrity and performance at every step before cutting over." },
+      { question: "How do you control cloud costs?", answer: "We implement right-sizing, reserved/savings plans, auto-scaling, and spend alerts with anomaly detection. Most clients see 30-40% cost reduction after optimization." },
+      { question: "Do you offer managed cloud?", answer: "Absolutely. Beyond setup, we provide ongoing managed cloud - monitoring, patching, backups, scaling adjustments, and a dedicated response team." },
+      { question: "What about cloud security?", answer: "Security is built into every architecture we design - network isolation, IAM, encryption, and compliance controls. We follow cloud provider security best practices and can meet SOC 2, HIPAA, or GDPR requirements." },
+    ],
+  },
+
+  "web-hosting": {
+    id: "web-hosting",
+    category: "cloud",
+    tagline: "Fast, secure hosting that keeps your website running flawlessly.",
+    overview:
+      "Your website's hosting directly affects its speed, reliability and security. We provide managed web hosting optimized for performance - with SSD storage, global CDN delivery, free SSL, automatic backups, and expert support - so your site loads fast and stays online.",
+    metrics: [
+      { value: "<1s", label: "Page load time" },
+      { value: "99.9%", label: "Uptime guarantee" },
+      { value: "24/7", label: "Expert support" },
+    ],
+    whyItMatters:
+      "Slow or unreliable hosting costs you visitors, rankings and sales. Fast, dependable hosting is the invisible foundation that makes everything else - SEO, conversions, user experience - actually work.",
+    howItWorks: [
+      "We assess your site's traffic, tech stack and resource needs, then place it on the right hosting environment - shared, VPS, or dedicated - tuned for your specific workload.",
+      "We configure a global CDN, SSD storage, caching layers, and HTTP/3 so pages load in under a second from anywhere in the world.",
+      "We handle security and reliability - free SSL, malware scanning, daily backups, and automatic updates - so your site stays safe and recoverable without you lifting a finger.",
+    ],
+    features: [
+      { title: "SSD storage", description: "Lightning-fast solid-state drives for instant data access.", icon: HardDrive },
+      { title: "Global CDN", description: "Edge network delivering your content worldwide at low latency.", icon: Globe },
+      { title: "Free SSL", description: "Automatic SSL certificates for secure, trusted connections.", icon: Lock },
+      { title: "Daily backups", description: "Automatic daily backups with one-click restore.", icon: Database },
+      { title: "Malware scanning", description: "Continuous security scanning and threat removal.", icon: ShieldCheck },
+      { title: "Expert support", description: "24/7 support from hosting specialists, not call centers.", icon: Award },
+    ],
+    useCases: [
+      "Marketing sites and blogs",
+      "Small-to-medium business websites",
+      "Portfolio and personal sites",
+      "WordPress and CMS-powered sites",
+    ],
+    process: [
+      { step: "01", title: "Assess", description: "Site analysis and hosting environment recommendation." },
+      { step: "02", title: "Migrate", description: "Free migration with zero downtime." },
+      { step: "03", title: "Optimize", description: "CDN, caching and performance tuning." },
+      { step: "04", title: "Support", description: "Ongoing monitoring, backups and updates." },
+    ],
+    benefits: [
+      { title: "Blazing speed", description: "Sub-second loads that rank well and convert better.", icon: Zap },
+      { title: "Rock-solid uptime", description: "99.9% uptime guarantee with redundant infrastructure.", icon: ShieldCheck },
+      { title: "Hands-off security", description: "SSL, scanning and updates handled for you.", icon: Lock },
+      { title: "Always backed up", description: "Daily backups mean you're never one mistake from disaster.", icon: Database },
+    ],
+    outcomes: [
+      "Faster page loads that improve SEO and conversions",
+      "Reliable uptime with automatic failover",
+      "Stronger security with SSL and malware protection",
+      "Peace of mind with daily backups and support",
+    ],
+    deliverables: [
+      "Managed web hosting environment",
+      "Free SSL and CDN setup",
+      "Daily automated backups",
+      "Malware scanning and removal",
+      "24/7 expert support",
+    ],
+    faq: [
+      { question: "Do you offer free migration?", answer: "Yes. We migrate your site from any provider for free, with zero downtime - handling files, databases, email, and DNS so the switch is seamless." },
+      { question: "Can you host WordPress?", answer: "Absolutely. We specialize in optimized WordPress hosting with server-level caching, automatic updates, and staging environments." },
+      { question: "What happens if my site goes down?", answer: "Our monitoring detects outages in real time and our team responds immediately. The 99.9% uptime SLA means reliability is guaranteed, not hoped for." },
+      { question: "Do you provide email hosting too?", answer: "Yes - we offer integrated business email hosting alongside your web hosting, or you can use any third-party provider. We'll recommend the best setup." },
+      { question: "How do backups work?", answer: "Daily automatic backups are retained for 30 days, with one-click restore from your control panel. You can also take manual snapshots before making changes." },
+    ],
+  },
+
+  "managed-hosting": {
+    id: "managed-hosting",
+    category: "cloud",
+    tagline: "Fully managed servers and support - you focus on your business.",
+    overview:
+      "Managed hosting means we handle every aspect of your server infrastructure - setup, configuration, security, updates, monitoring and support - so your team can focus on building your product, not babysitting servers. It's the premium, hands-off option for businesses that need reliability without the overhead.",
+    metrics: [
+      { value: "100%", label: "Fully managed" },
+      { value: "24/7", label: "Monitoring & support" },
+      { value: "<15min", label: "Response time" },
+    ],
+    whyItMatters:
+      "Managing servers well requires specialized expertise that most teams don't have. With managed hosting, you get that expertise as a service - better reliability, better security, and zero infrastructure headaches.",
+    howItWorks: [
+      "We take over your server environment completely - assessing your current setup, optimizing configurations, and hardening security as the first step.",
+      "We monitor everything 24/7 - uptime, performance, security threats, resource usage - and respond to issues before they affect your users.",
+      "We handle all the ongoing work - updates, patches, backups, scaling, troubleshooting - so your infrastructure keeps improving without demanding your team's time.",
+    ],
+    features: [
+      { title: "Full management", description: "We handle setup, config, updates and troubleshooting end to end.", icon: Server },
+      { title: "24/7 monitoring", description: "Round-the-clock monitoring with proactive issue resolution.", icon: ShieldCheck },
+      { title: "Security hardening", description: "Continuous patching, firewall management and intrusion detection.", icon: Lock },
+      { title: "Automatic backups", description: "Scheduled backups with tested disaster recovery.", icon: Database },
+      { title: "Performance tuning", description: "Ongoing optimization for speed and resource efficiency.", icon: Gauge },
+      { title: "Expert support", description: "Direct access to senior engineers, not tier-1 support.", icon: Award },
+    ],
+    useCases: [
+      "Businesses without a dedicated ops team",
+      "SaaS products needing reliable infrastructure",
+      "E-commerce stores that can't afford downtime",
+      "Agencies managing multiple client sites",
+    ],
+    process: [
+      { step: "01", title: "Onboard", description: "We take over your environment and document everything." },
+      { step: "02", title: "Optimize", description: "Security hardening and performance tuning." },
+      { step: "03", title: "Monitor", description: "24/7 monitoring with proactive maintenance." },
+      { step: "04", title: "Support", description: "Ongoing management and rapid response." },
+    ],
+    benefits: [
+      { title: "Zero overhead", description: "No need to hire or manage an in-house ops team.", icon: Award },
+      { title: "Proactive care", description: "We fix issues before they become outages.", icon: ShieldCheck },
+      { title: "Expert access", description: "Senior engineers available whenever you need them.", icon: Users },
+      { title: "Predictable costs", description: "Flat monthly fee instead of unpredictable break/fix bills.", icon: TrendingUp },
+    ],
+    outcomes: [
+      "Reliable infrastructure managed by experts",
+      "Higher uptime with proactive monitoring",
+      "Stronger security with continuous hardening",
+      "More time for your team to focus on the product",
+    ],
+    deliverables: [
+      "Fully managed server environment",
+      "24/7 monitoring and alerting",
+      "Security hardening and patching",
+      "Backup and disaster recovery",
+      "Dedicated support engineer",
+    ],
+    faq: [
+      { question: "What exactly do you manage?", answer: "Everything infrastructure: the operating system, web server, database, security, backups, updates, performance tuning, and troubleshooting. You manage your application; we manage everything it runs on." },
+      { question: "How fast do you respond to issues?", answer: "Critical issues get a response within 15 minutes, 24/7. Our monitoring catches most problems before you even notice them, and we resolve them proactively." },
+      { question: "Can you manage servers we already own?", answer: "Yes. We can manage your existing dedicated servers, VPS, or cloud instances regardless of where they're hosted - we take over management seamlessly." },
+      { question: "What's not included in management?", answer: "Application code changes and feature development are yours. We manage the infrastructure and platform; you own the product. We'll always clarify the boundary upfront." },
+      { question: "Do you offer SLAs?", answer: "Yes. We offer uptime SLAs up to 99.99% depending on your architecture, with defined response-time commitments and escalation procedures." },
+    ],
+  },
+
+  "aws-solutions": {
+    id: "aws-solutions",
+    category: "cloud",
+    tagline: "AWS architecture, migration and optimization by certified experts.",
+    overview:
+      "Amazon Web Services is the world's leading cloud platform - but its breadth makes it easy to misconfigure, overspend, or build fragile architectures. Our AWS-certified engineers design, migrate and optimize AWS environments that are secure, scalable and cost-efficient, so you get the full power of AWS without the guesswork.",
+    metrics: [
+      { value: "AWS", label: "Certified architects" },
+      { value: "-40%", label: "Average cost savings" },
+      { value: "99.99%", label: "Achievable uptime" },
+    ],
+    whyItMatters:
+      "Done right, AWS gives you virtually unlimited scale and capabilities. Done wrong, it creates surprise bills, security holes, and outages. Expert AWS architecture is the difference between a cloud that accelerates you and one that drains you.",
+    howItWorks: [
+      "We review your current state - whether that's on-premise, another cloud, or an existing AWS setup - and design a target architecture optimized for your specific workload, budget and compliance needs.",
+      "We execute the migration or build using infrastructure-as-code, well-architected best practices, and zero-downtime cutover strategies so the transition is smooth and reversible.",
+      "We optimize continuously - right-sizing, reserved capacity, auto-scaling, and cost monitoring - turning AWS from a cost center into a predictable, efficient foundation.",
+    ],
+    features: [
+      { title: "Architecture design", description: "Well-Architected Framework designs for reliability and efficiency.", icon: Cpu },
+      { title: "Cloud migration", description: "Lift-and-shift or re-architecture migrations with minimal downtime.", icon: Cloud },
+      { title: "Cost optimization", description: "Reserved instances, savings plans and waste elimination.", icon: Award },
+      { title: "Security & compliance", description: "IAM, encryption, VPC design aligned to SOC 2, HIPAA, PCI.", icon: ShieldCheck },
+      { title: "Serverless", description: "Lambda, API Gateway and event-driven architecture expertise.", icon: Zap },
+      { title: "DevOps", description: "CI/CD pipelines, IaC (Terraform) and automated deployments.", icon: Code2 },
+    ],
+    useCases: [
+      "Companies migrating to AWS",
+      "SaaS products scaling on AWS",
+      "Teams with unpredictable AWS bills",
+      "Enterprises needing Well-Architected reviews",
+    ],
+    process: [
+      { step: "01", title: "Assess", description: "Current-state audit and target architecture design." },
+      { step: "02", title: "Migrate", description: "Phased migration with infrastructure-as-code." },
+      { step: "03", title: "Optimize", description: "Cost, performance and security optimization." },
+      { step: "04", title: "Operate", description: "Ongoing management, monitoring and improvement." },
+    ],
+    benefits: [
+      { title: "Expert architecture", description: "Certified engineers design it right the first time.", icon: Award },
+      { title: "Lower AWS bills", description: "Typical 30-40% cost reduction through optimization.", icon: TrendingUp },
+      { title: "Built to scale", description: "Architecture that handles growth without rework.", icon: TrendingUp },
+      { title: "Secure by design", description: "AWS best practices baked into every layer.", icon: ShieldCheck },
+    ],
+    outcomes: [
+      "A well-architected AWS environment",
+      "Lower and predictable cloud costs",
+      "Higher reliability and scalability",
+      "Compliance-ready security posture",
+    ],
+    deliverables: [
+      "AWS architecture design and review",
+      "Migration execution with IaC",
+      "Cost optimization assessment",
+      "Security and compliance hardening",
+      "Well-Architected Framework report",
+    ],
+    faq: [
+      { question: "Are your engineers AWS-certified?", answer: "Yes. Our team holds AWS certifications including Solutions Architect (Associate and Professional), DevOps Engineer, and Security specialty - so you're working with verified experts." },
+      { question: "Can you reduce our AWS bill?", answer: "Almost always. Most AWS accounts have 30-40% waste from over-provisioning, idle resources, and missing savings plans. Our cost optimization engagement typically pays for itself within the first month." },
+      { question: "Do you do lift-and-shift or re-architecture?", answer: "Both. We'll recommend the right strategy per workload - sometimes a quick lift-and-shift makes sense; other times re-architecting to serverless or containers delivers far more value long-term." },
+      { question: "Can you help with serverless?", answer: "Absolutely. We design event-driven serverless architectures using Lambda, API Gateway, Step Functions and DynamoDB - ideal for cost-efficient, auto-scaling workloads." },
+      { question: "Do you offer ongoing AWS management?", answer: "Yes. Beyond projects, we provide ongoing AWS managed services - monitoring, cost management, security patching, and a dedicated cloud team as an extension of yours." },
+    ],
+  },
+
+  "email-hosting": {
+    id: "email-hosting",
+    category: "cloud",
+    tagline: "Secure, reliable business email with your own domain.",
+    overview:
+      "Professional email hosting gives your business a credible, branded email address (you@yourcompany.com) with the reliability, security and storage that free providers can't match. We set up and manage business email on Google Workspace or Microsoft 365 - with migration, security, and ongoing support included.",
+    metrics: [
+      { value: "99.9%", label: "Email uptime" },
+      { value: "100%", label: "Deliverability focus" },
+      { value: "24/7", label: "Support" },
+    ],
+    whyItMatters:
+      "Every email you send from a @gmail or @yahoo address undercuts your credibility. Branded business email builds trust, improves deliverability, and gives you the storage, security and collaboration tools a growing business needs.",
+    howItWorks: [
+      "We help you choose the right platform - Google Workspace or Microsoft 365 - based on your team's tools, budget and workflow preferences.",
+      "We set up your custom domain email, configure security (SPF, DKIM, DMARC) for strong deliverability, and migrate existing mail, contacts and calendars with zero data loss.",
+      "We provide ongoing management - user provisioning, security policies, backup, and support - so your email stays reliable and secure as your team grows.",
+    ],
+    features: [
+      { title: "Custom domain", description: "Professional email on your own domain (you@company.com).", icon: AtSign },
+      { title: "Google Workspace", description: "Full setup and migration for Gmail, Drive, Meet and more.", icon: Globe },
+      { title: "Microsoft 365", description: "Exchange, Teams, OneDrive and Office apps deployment.", icon: Mail },
+      { title: "Deliverability", description: "SPF, DKIM and DMARC setup so email reaches the inbox.", icon: ShieldCheck },
+      { title: "Migration", description: "Zero-loss migration of mail, contacts and calendars.", icon: Database },
+      { title: "Security policies", description: "Two-factor auth, encryption and data loss prevention.", icon: Lock },
+    ],
+    useCases: [
+      "New businesses needing branded email",
+      "Teams moving to Google or Microsoft",
+      "Companies with email deliverability issues",
+      "Organizations needing secure email policies",
+    ],
+    process: [
+      { step: "01", title: "Choose", description: "Platform recommendation based on your needs." },
+      { step: "02", title: "Set up", description: "Domain, users and security configuration." },
+      { step: "03", title: "Migrate", description: "Move existing email with zero data loss." },
+      { step: "04", title: "Manage", description: "Ongoing users, security and support." },
+    ],
+    benefits: [
+      { title: "Credible brand", description: "Branded email builds trust with every send.", icon: Award },
+      { title: "Better deliverability", description: "Proper auth keeps you out of spam folders.", icon: ShieldCheck },
+      { title: "Collaboration", description: "Shared docs, video and storage included.", icon: Users },
+      { title: "Enterprise security", description: "2FA, encryption and policy controls.", icon: Lock },
+    ],
+    outcomes: [
+      "Professional branded email addresses",
+      "Reliable email that reaches the inbox",
+      "Integrated collaboration tools for your team",
+      "Secure, policy-driven email management",
+    ],
+    deliverables: [
+      "Business email platform setup",
+      "Custom domain configuration",
+      "Email migration (zero data loss)",
+      "Deliverability authentication (SPF/DKIM/DMARC)",
+      "Ongoing user and security management",
+    ],
+    faq: [
+      { question: "Google Workspace or Microsoft 365?", answer: "Both are excellent. Google Workspace is simpler and great for collaboration-first teams; Microsoft 365 integrates with Office apps and is preferred by enterprises. We'll recommend based on your workflow." },
+      { question: "Can you keep our existing emails?", answer: "Yes. We migrate all existing mail, contacts and calendars from any provider (including free Gmail/Yahoo) to your new business email with zero data loss and minimal downtime." },
+      { question: "Will our email reach the inbox?", answer: "We configure SPF, DKIM and DMARC authentication, which proves to receiving servers that your email is legitimate - dramatically improving deliverability and keeping you out of spam." },
+      { question: "Do you handle user management?", answer: "Yes. We provision and deprovision users, manage licenses, enforce security policies like 2FA, and handle password resets - taking the admin burden off your team." },
+      { question: "Is the email secure?", answer: "We implement enterprise-grade security: two-factor authentication, encryption in transit and at rest, data loss prevention policies, and admin controls over what data can be shared externally." },
+    ],
+  },
+
+  "dedicated-server": {
+    id: "dedicated-server",
+    category: "cloud",
+    tagline: "High-performance bare metal servers for demanding workloads.",
+    overview:
+      "When your workload needs maximum performance, control or compliance, a dedicated server delivers raw, exclusive compute power that no shared environment can match. We provide and manage high-performance dedicated servers - configured, secured and optimized for your specific application.",
+    metrics: [
+      { value: "100%", label: "Dedicated resources" },
+      { value: "10Gbps", label: "Network capacity" },
+      { value: "NVMe", label: "Storage speed" },
+    ],
+    whyItMatters:
+      "Some workloads - high-traffic sites, data-heavy applications, gaming servers, compliance-bound systems - need guaranteed resources that shared hosting can't provide. A dedicated server gives you predictable, uncompromised performance.",
+    howItWorks: [
+      "We assess your workload's CPU, memory, storage and network requirements, then specify the ideal bare metal configuration - from CPU model to NVMe storage to bandwidth.",
+      "We provision, secure and optimize the server - OS installation, network configuration, firewall hardening, and performance tuning specific to your application.",
+      "We manage it ongoing - monitoring, security patching, backups, and scaling recommendations - so your dedicated server stays fast, secure and reliable.",
+    ],
+    features: [
+      { title: "Bare metal power", description: "Exclusive access to full server hardware - no sharing.", icon: Server },
+      { title: "NVMe storage", description: "Ultra-fast NVMe SSDs for instant data access.", icon: HardDrive },
+      { title: "10Gbps network", description: "High-bandwidth network for data-heavy workloads.", icon: Network },
+      { title: "Full root access", description: "Complete control to configure anything you need.", icon: Code2 },
+      { title: "DDoS protection", description: "Enterprise-grade DDoS mitigation included.", icon: ShieldCheck },
+      { title: "Hardware choice", description: "Pick CPU, RAM, storage and GPU to match your workload.", icon: Cpu },
+    ],
+    useCases: [
+      "High-traffic websites and applications",
+      "Data-heavy or compute-intensive workloads",
+      "Game servers and streaming platforms",
+      "Compliance workloads needing isolation",
+    ],
+    process: [
+      { step: "01", title: "Specify", description: "Hardware selection based on your workload needs." },
+      { step: "02", title: "Deploy", description: "Provision, secure and optimize the server." },
+      { step: "03", title: "Tune", description: "Performance tuning for your specific application." },
+      { step: "04", title: "Manage", description: "Monitoring, security and ongoing maintenance." },
+    ],
+    benefits: [
+      { title: "Guaranteed power", description: "No noisy neighbors - 100% of resources are yours.", icon: Cpu },
+      { title: "Predictable speed", description: "Consistent performance under any load.", icon: Zap },
+      { title: "Full control", description: "Root access to customize everything.", icon: Code2 },
+      { title: "Isolation & security", description: "Single-tenant hardware for compliance.", icon: ShieldCheck },
+    ],
+    outcomes: [
+      "Consistent high performance under heavy load",
+      "Full hardware control for custom configurations",
+      "Isolated environment for compliance needs",
+      "Predictable performance with dedicated resources",
+    ],
+    deliverables: [
+      "Configured dedicated server",
+      "OS and security hardening",
+      "Performance optimization",
+      "DDoS protection setup",
+      "Monitoring and backups",
+    ],
+    faq: [
+      { question: "When do I need a dedicated server?", answer: "When shared or cloud hosting can't meet your needs: very high traffic, compute-intensive workloads, strict compliance requiring isolation, or applications needing specific hardware. We'll tell you honestly if a dedicated server is overkill." },
+      { question: "Can I choose the hardware?", answer: "Yes. We offer a range of configurations - CPU models, RAM, NVMe storage, GPUs - and will recommend the optimal spec for your workload and budget." },
+      { question: "Is it managed or unmanaged?", answer: "Both options are available. We strongly recommend managed dedicated hosting - we handle security, monitoring, backups and optimization so you get bare metal power without the ops burden." },
+      { question: "How is it different from cloud?", answer: "Cloud gives you shared, elastic resources billed by use; a dedicated server gives you exclusive, fixed resources with predictable performance. Dedicated wins for consistent heavy workloads; cloud wins for variable demand." },
+      { question: "What about DDoS protection?", answer: "Enterprise DDoS mitigation is included with every dedicated server, absorbing attacks at the network edge so your service stays available even under sustained attack." },
+    ],
+  },
+
+  "vps-hosting": {
+    id: "vps-hosting",
+    category: "cloud",
+    tagline: "Virtual private servers - dedicated resources at a fraction of the cost.",
+    overview:
+      "A VPS gives you your own isolated slice of a server with guaranteed resources and full root access - the perfect middle ground between cheap shared hosting and expensive dedicated servers. We provide and manage high-performance VPS hosting tuned for reliability and value.",
+    metrics: [
+      { value: "99.9%", label: "Uptime" },
+      { value: "Root", label: "Full access" },
+      { value: "SSD", label: "All-flash storage" },
+    ],
+    whyItMatters:
+      "A VPS delivers dedicated CPU, RAM and storage at a fraction of a dedicated server's cost. It's the smart choice for growing sites and applications that have outgrown shared hosting but don't yet need a full bare metal box.",
+    howItWorks: [
+      "We size the right VPS plan for your workload - balancing CPU, RAM, storage and bandwidth - so you get dedicated resources without paying for capacity you don't use.",
+      "We provision and secure the VPS - OS install, firewall, SSH hardening, and performance tuning - and migrate your existing site or app with minimal downtime.",
+      "We manage it ongoing - monitoring, security patching, backups, and one-click scaling when you need more resources - so your VPS grows with you.",
+    ],
+    features: [
+      { title: "Dedicated resources", description: "Guaranteed CPU and RAM - no noisy neighbors.", icon: Server },
+      { title: "Full root access", description: "Complete control to install and configure anything.", icon: Code2 },
+      { title: "SSD storage", description: "Fast solid-state storage for quick data access.", icon: HardDrive },
+      { title: "One-click scaling", description: "Upgrade CPU and RAM instantly as you grow.", icon: TrendingUp },
+      { title: "Snapshot backups", description: "On-demand snapshots with easy restore.", icon: Database },
+      { title: "Choice of OS", description: "Linux or Windows - your preferred distribution.", icon: Cpu },
+    ],
+    useCases: [
+      "Growing sites that outgrew shared hosting",
+      "SaaS MVPs and staging environments",
+      "Developers needing root access",
+      "Budget-conscious high-performance needs",
+    ],
+    process: [
+      { step: "01", title: "Size", description: "Right-size the VPS plan for your workload." },
+      { step: "02", title: "Deploy", description: "Provision, secure and configure the server." },
+      { step: "03", title: "Migrate", description: "Move your site or app with minimal downtime." },
+      { step: "04", title: "Scale", description: "One-click resource upgrades as you grow." },
+    ],
+    benefits: [
+      { title: "Cost-effective", description: "Dedicated resources at shared-hosting-like prices.", icon: Award },
+      { title: "Isolated", description: "Your own environment, not affected by other tenants.", icon: ShieldCheck },
+      { title: "Full control", description: "Root access to customize everything.", icon: Code2 },
+      { title: "Easy scaling", description: "Add resources instantly when demand grows.", icon: TrendingUp },
+    ],
+    outcomes: [
+      "Dedicated resources at a lower cost",
+      "Better performance than shared hosting",
+      "Full control with root access",
+      "Easy upgrades as your needs grow",
+    ],
+    deliverables: [
+      "Configured VPS environment",
+      "OS and security hardening",
+      "Site or app migration",
+      "Snapshot backup setup",
+      "Monitoring and support",
+    ],
+    faq: [
+      { question: "VPS vs shared hosting?", answer: "Shared hosting means you share a server (and its resources) with many other sites, which can cause slowdowns. A VPS gives you guaranteed dedicated resources and isolation - more reliable and faster, especially as you grow." },
+      { question: "VPS vs dedicated server?", answer: "A dedicated server is a whole physical machine just for you; a VPS is a virtual slice of a server with guaranteed resources. VPS is far cheaper while still giving dedicated resources - ideal until you need an entire bare metal box." },
+      { question: "Can I upgrade later?", answer: "Yes, scaling is one-click. You can add CPU, RAM, and storage instantly without downtime or migration - so you can start small and grow as needed." },
+      { question: "Which OS can I use?", answer: "Any Linux distribution (Ubuntu, Debian, CentOS, AlmaLinux and more) or Windows Server. We'll recommend the best fit for your application." },
+      { question: "Do you manage the VPS?", answer: "We offer both managed and unmanaged VPS. For most businesses we recommend managed - we handle security, monitoring, backups, and optimization so you get the power without the ops work." },
+    ],
+  },
+
+  "database-hosting": {
+    id: "database-hosting",
+    category: "cloud",
+    tagline: "Managed databases with automatic backups, scaling and high availability.",
+    overview:
+      "Your database is the heart of your application - and managing it well requires specialized expertise. We provide managed database hosting for PostgreSQL, MySQL, MongoDB, Redis and more - with automated backups, replication, scaling and tuning, so your data is always fast, available and safe.",
+    metrics: [
+      { value: "99.99%", label: "Database uptime" },
+      { value: "Auto", label: "Daily backups" },
+      { value: "<5min", label: "Point-in-time recovery" },
+    ],
+    whyItMatters:
+      "A poorly managed database is the single biggest cause of slow apps and data loss. Managed database hosting gives you expert tuning, reliable backups, and high availability - protecting your most valuable asset without hiring a dedicated DBA.",
+    howItWorks: [
+      "We assess your database workload - read/write patterns, data size, latency needs - and deploy the right engine and configuration on infrastructure tuned for database performance.",
+      "We set up replication and high availability so your database stays up through failures, plus automated backups with point-in-time recovery so you never lose data.",
+      "We tune and monitor continuously - query optimization, indexing, connection pooling, and scaling - so your database keeps performing as your data and traffic grow.",
+    ],
+    features: [
+      { title: "Multiple engines", description: "PostgreSQL, MySQL, MongoDB, Redis, SQL Server and more.", icon: Database },
+      { title: "High availability", description: "Replication with automatic failover for 99.99% uptime.", icon: ShieldCheck },
+      { title: "Automated backups", description: "Daily backups with point-in-time recovery.", icon: Database },
+      { title: "Read replicas", description: "Scale read traffic horizontally with replicas.", icon: TrendingUp },
+      { title: "Performance tuning", description: "Query optimization, indexing and connection pooling.", icon: Gauge },
+      { title: "Monitoring", description: "24/7 performance monitoring with slow-query alerting.", icon: BarChart3 },
+    ],
+    useCases: [
+      "SaaS applications with growing data",
+      "E-commerce stores with transactional data",
+      "Apps needing high-availability databases",
+      "Teams without a dedicated DBA",
+    ],
+    process: [
+      { step: "01", title: "Design", description: "Engine selection and schema/performance review." },
+      { step: "02", title: "Deploy", description: "Managed database with HA and backups configured." },
+      { step: "03", title: "Migrate", description: "Zero-downtime data migration and validation." },
+      { step: "04", title: "Optimize", description: "Continuous tuning, indexing and scaling." },
+    ],
+    benefits: [
+      { title: "Never lose data", description: "Automated backups with point-in-time recovery.", icon: Database },
+      { title: "Always available", description: "Replication and failover keep you online.", icon: ShieldCheck },
+      { title: "Faster queries", description: "Expert indexing and tuning for snappy performance.", icon: Zap },
+      { title: "No DBA needed", description: "Database expertise as a service, not a salary.", icon: Award },
+    ],
+    outcomes: [
+      "Reliable database with high availability",
+      "Automatic backups and disaster recovery",
+      "Optimized query performance",
+      "Scalable storage and compute as you grow",
+    ],
+    deliverables: [
+      "Managed database deployment",
+      "High availability and replication setup",
+      "Automated backup configuration",
+      "Performance tuning and indexing",
+      "24/7 monitoring and alerting",
+    ],
+    faq: [
+      { question: "Which databases do you support?", answer: "All major engines: PostgreSQL, MySQL, MongoDB, Redis, SQL Server, MariaDB, Elasticsearch, and more. We'll recommend the best engine for your application's data model and access patterns." },
+      { question: "How are backups handled?", answer: "Automated daily full backups plus continuous transaction logs enabling point-in-time recovery - you can restore to any specific minute within the retention window. Backups are encrypted and stored in a separate region." },
+      { question: "Can you migrate our existing database?", answer: "Yes. We perform zero-downtime migrations from any source - on-premise, another cloud, or self-managed - validating data integrity and performance before and after the cutover." },
+      { question: "Do you handle scaling?", answer: "Yes. We scale vertically (more CPU/RAM) and horizontally (read replicas, sharding) as your data and traffic grow, often automatically based on thresholds we configure together." },
+      { question: "What about database security?", answer: "We implement network isolation (private subnets), encryption at rest and in transit, strong access controls via IAM, and regular security patching - aligned to compliance requirements like SOC 2, HIPAA, or GDPR." },
     ],
   },
 };

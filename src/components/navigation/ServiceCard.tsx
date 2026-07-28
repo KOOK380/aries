@@ -33,14 +33,14 @@ export function ServiceCard({ service, onNavigate, className }: ServiceCardProps
         href={service.href}
         onClick={onNavigate}
         aria-label={`${service.title}: ${service.description}`}
-        className="relative flex items-start gap-4 rounded-2xl border border-surface-border bg-white p-4 transition-colors duration-200 hover:border-brand-primary/30 hover:bg-brand-primary/[0.03] focus-visible:outline-none dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-brand-secondary/40 dark:hover:bg-white/[0.06]"
+        className="relative flex items-start gap-2.5 rounded-xl border border-surface-border bg-white p-2.5 transition-colors duration-200 hover:border-brand-primary/30 hover:bg-brand-primary/[0.03] focus-visible:outline-none dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-brand-secondary/40 dark:hover:bg-white/[0.06]"
       >
         {/* Rounded icon container */}
         <motion.span
           variants={iconVariants}
-          className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-sm"
+          className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-gradient text-white shadow-sm"
         >
-          <Icon className="h-5 w-5" strokeWidth={2.25} />
+          <Icon className="h-4 w-4" strokeWidth={2.25} />
         </motion.span>
 
         {/* Text block */}
@@ -48,12 +48,12 @@ export function ServiceCard({ service, onNavigate, className }: ServiceCardProps
           <div className="flex items-center gap-1.5">
             <motion.h3
               variants={titleVariants}
-              className="truncate text-sm font-semibold text-surface-heading dark:text-white"
+              className="truncate text-[13px] font-semibold text-surface-heading dark:text-white"
             >
               {service.title}
             </motion.h3>
           </div>
-          <p className="mt-1 text-[13px] font-medium leading-snug text-surface-text dark:text-gray-400">
+          <p className="mt-0.5 truncate text-[11px] font-medium leading-snug text-surface-text dark:text-gray-400">
             {service.description}
           </p>
         </div>

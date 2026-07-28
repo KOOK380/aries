@@ -17,6 +17,15 @@ import {
  Smartphone,
  ShieldCheck,
  Lock,
+ Cloud,
+ Server,
+ HardDrive,
+ Database,
+ AtSign,
+ Network,
+ Cpu,
+ Activity,
+ CheckCircle2,
  type LucideIcon,
 } from "lucide-react";
 import { TiltCard } from "@/components/ui/TiltCard";
@@ -48,6 +57,15 @@ export const heroVisuals: Record<string, React.ComponentType<HeroVisualProps>> =
  "mobile-app-development": MobileAppVisual,
  "cyber-security": CyberSecurityVisual,
  "data-protection": DataProtectionVisual,
+ // Cloud & AI
+ "cloud-hosting": CloudHostingVisual,
+ "web-hosting": WebHostingVisual,
+ "managed-hosting": ManagedHostingVisual,
+ "aws-solutions": AwsSolutionsVisual,
+ "email-hosting": EmailHostingVisual,
+ "dedicated-server": DedicatedServerVisual,
+ "vps-hosting": VpsHostingVisual,
+ "database-hosting": DatabaseHostingVisual,
 };
 
 /** Shared glass panel wrapper used inside TiltCard by every visual. */
@@ -759,6 +777,441 @@ export function ServiceHeroVisual({
 }) {
  const Visual = heroVisuals[slug] ?? DefaultVisual;
  return <Visual gradient={gradient} />;
+}
+
+/* ================================================================ */
+/* CLOUD & AI                                                        */
+/* ================================================================ */
+
+/** Cloud Hosting - a server rack with scaling indicator and global nodes. */
+function CloudHostingVisual({ gradient }: HeroVisualProps) {
+ return (
+  <HeroStage gradient={gradient}>
+   <GlassPanel>
+    <div className="flex items-center justify-between">
+     <div className="flex items-center gap-2">
+      <span className={cn("inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br text-white", gradient)}>
+       <Cloud className="h-4 w-4" />
+      </span>
+      <p className="text-xs font-bold text-surface-heading dark:text-white">Cloud infrastructure</p>
+     </div>
+     <span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">99.99% up</span>
+    </div>
+
+    {/* Scaling servers */}
+    <div className="mt-4 space-y-2">
+     {[0, 1, 2].map((i) => (
+      <motion.div
+       key={i}
+       animate={{ scaleX: [0.7, 1, 0.85] }}
+       transition={{ duration: 2 + i * 0.4, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 }}
+       className="flex items-center gap-2"
+      >
+       <Server className={cn("h-4 w-4 shrink-0 bg-gradient-to-br bg-clip-text", gradient)} style={{ color: "transparent" }} />
+       <div className={cn("h-6 flex-1 rounded-md bg-gradient-to-r", gradient)} style={{ opacity: 0.4 + i * 0.2 }} />
+      </motion.div>
+     ))}
+    </div>
+
+    {/* Global nodes */}
+    <div className="mt-4 grid grid-cols-3 gap-2">
+     {[{ v: "<50ms", k: "Latency" }, { v: "Global", k: "CDN" }, { v: "-40%", k: "Cost" }].map((m, i) => (
+      <Floating key={m.k} index={i}>
+       <div className="rounded-xl border border-surface-border bg-white/70 p-2.5 text-center dark:border-white/10 dark:bg-white/5">
+        <p className="text-sm font-bold text-surface-heading dark:text-white">{m.v}</p>
+        <p className="text-[9px] font-medium uppercase tracking-wide text-surface-text dark:text-gray-400">{m.k}</p>
+       </div>
+      </Floating>
+     ))}
+    </div>
+   </GlassPanel>
+  </HeroStage>
+ );
+}
+
+/** Web Hosting - a browser window with a speed gauge. */
+function WebHostingVisual({ gradient }: HeroVisualProps) {
+ return (
+  <HeroStage gradient={gradient}>
+   <GlassPanel>
+    <div className="flex items-center justify-between">
+     <div className="flex items-center gap-2">
+      <span className={cn("inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br text-white", gradient)}>
+       <Globe className="h-4 w-4" />
+      </span>
+      <p className="text-xs font-bold text-surface-heading dark:text-white">Website performance</p>
+     </div>
+     <span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">99.9% up</span>
+    </div>
+
+    {/* Speed gauge ring */}
+    <div className="mt-4 flex items-center justify-center py-3">
+     <div className="relative h-24 w-24">
+      <svg viewBox="0 0 100 100" className="h-full w-full -rotate-90">
+       <circle cx="50" cy="50" r="42" fill="none" stroke="currentColor" strokeWidth="8" className="text-surface-border dark:text-white/10" />
+       <motion.circle
+        cx="50" cy="50" r="42" fill="none" strokeWidth="8" strokeLinecap="round"
+        className={cn("bg-gradient-to-br", gradient)}
+        stroke="url(#webhostGrad)"
+        pathLength="100"
+        initial={{ strokeDashoffset: 100 }}
+        animate={{ strokeDashoffset: 8 }}
+        transition={{ duration: 1.4, ease: easeOut }}
+        style={{ strokeDasharray: 100 }}
+       />
+       <defs>
+        <linearGradient id="webhostGrad" x1="0" y1="0" x2="1" y2="1">
+         <stop offset="0%" stopColor="#f59e0b" />
+         <stop offset="100%" stopColor="#ea580c" />
+        </linearGradient>
+       </defs>
+      </svg>
+      <div className="absolute inset-0 flex flex-col items-center justify-center">
+       <p className={cn("text-2xl font-extrabold bg-gradient-to-br bg-clip-text text-transparent", gradient)}>0.8s</p>
+       <p className="text-[9px] font-medium text-surface-text dark:text-gray-400">load time</p>
+      </div>
+     </div>
+    </div>
+
+    <div className="mt-2 grid grid-cols-3 gap-2">
+     {[{ v: "SSL", k: "Secure" }, { v: "CDN", k: "Global" }, { v: "Daily", k: "Backups" }].map((m, i) => (
+      <Floating key={m.k} index={i}>
+       <div className="rounded-xl border border-surface-border bg-white/70 p-2.5 text-center dark:border-white/10 dark:bg-white/5">
+        <p className="text-sm font-bold text-surface-heading dark:text-white">{m.v}</p>
+        <p className="text-[9px] font-medium uppercase tracking-wide text-surface-text dark:text-gray-400">{m.k}</p>
+       </div>
+      </Floating>
+     ))}
+    </div>
+   </GlassPanel>
+  </HeroStage>
+ );
+}
+
+/** Managed Hosting - a monitoring dashboard with live metrics. */
+function ManagedHostingVisual({ gradient }: HeroVisualProps) {
+ return (
+  <HeroStage gradient={gradient}>
+   <GlassPanel>
+    <div className="flex items-center justify-between">
+     <div className="flex items-center gap-2">
+      <span className={cn("inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br text-white", gradient)}>
+       <Activity className="h-4 w-4" />
+      </span>
+      <p className="text-xs font-bold text-surface-heading dark:text-white">Live monitoring</p>
+     </div>
+     <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">
+      <motion.span animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 1.4, repeat: Infinity }} className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+      Healthy
+     </span>
+    </div>
+
+    {/* Metric rows with live bars */}
+    <div className="mt-4 space-y-2.5">
+     {[{ p: "CPU load", w: "34%" }, { p: "Memory", w: "62%" }, { p: "Disk I/O", w: "48%" }].map((row, i) => (
+      <div key={row.p} className="space-y-1">
+       <div className="flex items-center justify-between text-[10px]">
+        <span className="font-semibold text-surface-text dark:text-gray-400">{row.p}</span>
+        <span className="font-bold text-surface-heading dark:text-white">{row.w}</span>
+       </div>
+       <div className="h-1.5 overflow-hidden rounded-full bg-surface-border dark:bg-white/10">
+        <motion.div
+         className={cn("h-full rounded-full bg-gradient-to-r", gradient)}
+         animate={{ width: [`${parseInt(row.w) - 8}%`, row.w, `${parseInt(row.w) - 4}%`] }}
+         transition={{ duration: 3 + i, repeat: Infinity, ease: "easeInOut" }}
+        />
+       </div>
+      </div>
+     ))}
+    </div>
+
+    <div className="mt-4 grid grid-cols-3 gap-2">
+     {[{ v: "24/7", k: "Support" }, { v: "<15m", k: "Response" }, { v: "100%", k: "Managed" }].map((m, i) => (
+      <Floating key={m.k} index={i}>
+       <div className="rounded-xl border border-surface-border bg-white/70 p-2.5 text-center dark:border-white/10 dark:bg-white/5">
+        <p className="text-sm font-bold text-surface-heading dark:text-white">{m.v}</p>
+        <p className="text-[9px] font-medium uppercase tracking-wide text-surface-text dark:text-gray-400">{m.k}</p>
+       </div>
+      </Floating>
+     ))}
+    </div>
+   </GlassPanel>
+  </HeroStage>
+ );
+}
+
+/** AWS Solutions - an architecture diagram with connected services. */
+function AwsSolutionsVisual({ gradient }: HeroVisualProps) {
+ return (
+  <HeroStage gradient={gradient}>
+   <GlassPanel>
+    <div className="flex items-center justify-between">
+     <div className="flex items-center gap-2">
+      <span className={cn("inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br text-white", gradient)}>
+       <Cpu className="h-4 w-4" />
+      </span>
+      <p className="text-xs font-bold text-surface-heading dark:text-white">AWS architecture</p>
+     </div>
+     <span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">Certified</span>
+    </div>
+
+    {/* Architecture nodes */}
+    <div className="mt-4 flex items-center justify-center gap-2">
+     {["EC2", "S3", "RDS", "Lambda"].map((svc, i) => (
+      <motion.div
+       key={svc}
+       initial={{ opacity: 0, y: 10 }}
+       animate={{ opacity: 1, y: 0 }}
+       transition={{ duration: 0.4, delay: 0.2 + i * 0.1 }}
+       className="flex flex-col items-center gap-1.5"
+      >
+       <span className={cn("flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br text-[9px] font-bold text-white shadow-sm", gradient)}>
+        {svc.slice(0, 2)}
+       </span>
+       <span className="text-[9px] font-semibold text-surface-text dark:text-gray-400">{svc}</span>
+      </motion.div>
+     ))}
+    </div>
+
+    {/* Connection line */}
+    <div className="mt-2 h-1 rounded-full bg-gradient-to-r from-transparent via-brand-primary/40 to-transparent" />
+
+    <div className="mt-4 grid grid-cols-3 gap-2">
+     {[{ v: "-40%", k: "Cost cut" }, { v: "99.99%", k: "Uptime" }, { v: "IaC", k: "Terraform" }].map((m, i) => (
+      <Floating key={m.k} index={i}>
+       <div className="rounded-xl border border-surface-border bg-white/70 p-2.5 text-center dark:border-white/10 dark:bg-white/5">
+        <p className="text-sm font-bold text-surface-heading dark:text-white">{m.v}</p>
+        <p className="text-[9px] font-medium uppercase tracking-wide text-surface-text dark:text-gray-400">{m.k}</p>
+       </div>
+      </Floating>
+     ))}
+    </div>
+   </GlassPanel>
+  </HeroStage>
+ );
+}
+
+/** Email Hosting - an inbox preview with branded domain. */
+function EmailHostingVisual({ gradient }: HeroVisualProps) {
+ return (
+  <HeroStage gradient={gradient}>
+   <GlassPanel>
+    <div className="flex items-center justify-between">
+     <div className="flex items-center gap-2">
+      <span className={cn("inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br text-white", gradient)}>
+       <AtSign className="h-4 w-4" />
+      </span>
+      <p className="text-xs font-bold text-surface-heading dark:text-white">Business inbox</p>
+     </div>
+     <span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">Secure</span>
+    </div>
+
+    {/* Inbox preview */}
+    <div className="mt-4 space-y-1.5">
+     {[
+      { from: "you@company.com", sub: "Welcome to your new inbox", unread: true },
+      { from: "team@company.com", sub: "Q3 planning doc attached", unread: true },
+      { from: "client@brand.com", sub: "Re: Project update", unread: false },
+     ].map((mail, i) => (
+      <motion.div
+       key={i}
+       initial={{ opacity: 0, x: -10 }}
+       animate={{ opacity: 1, x: 0 }}
+       transition={{ duration: 0.4, delay: 0.2 + i * 0.1 }}
+       className="flex items-center gap-2 rounded-lg border border-surface-border bg-white/70 p-2 dark:border-white/10 dark:bg-white/5"
+      >
+       <span className={cn("h-1.5 w-1.5 shrink-0 rounded-full bg-gradient-to-br", gradient)} style={{ opacity: mail.unread ? 1 : 0.3 }} />
+       <div className="min-w-0 flex-1">
+        <p className="truncate text-[10px] font-bold text-surface-heading dark:text-white">{mail.from}</p>
+        <p className="truncate text-[9px] text-surface-text dark:text-gray-400">{mail.sub}</p>
+       </div>
+      </motion.div>
+     ))}
+    </div>
+
+    <div className="mt-4 grid grid-cols-3 gap-2">
+     {[{ v: "30GB", k: "Storage" }, { v: "2FA", k: "Secured" }, { v: "Spam", k: "Protected" }].map((m, i) => (
+      <Floating key={m.k} index={i}>
+       <div className="rounded-xl border border-surface-border bg-white/70 p-2.5 text-center dark:border-white/10 dark:bg-white/5">
+        <p className="text-sm font-bold text-surface-heading dark:text-white">{m.v}</p>
+        <p className="text-[9px] font-medium uppercase tracking-wide text-surface-text dark:text-gray-400">{m.k}</p>
+       </div>
+      </Floating>
+     ))}
+    </div>
+   </GlassPanel>
+  </HeroStage>
+ );
+}
+
+/** Dedicated Server - a server rack with performance readout. */
+function DedicatedServerVisual({ gradient }: HeroVisualProps) {
+ return (
+  <HeroStage gradient={gradient}>
+   <GlassPanel>
+    <div className="flex items-center justify-between">
+     <div className="flex items-center gap-2">
+      <span className={cn("inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br text-white", gradient)}>
+       <Server className="h-4 w-4" />
+      </span>
+      <p className="text-xs font-bold text-surface-heading dark:text-white">Bare metal server</p>
+     </div>
+     <span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">10Gbps</span>
+    </div>
+
+    {/* Server rack units */}
+    <div className="mt-4 space-y-1.5">
+     {[0, 1, 2, 3].map((u) => (
+      <motion.div
+       key={u}
+       animate={{ opacity: [0.5, 1, 0.5] }}
+       transition={{ duration: 2, repeat: Infinity, delay: u * 0.25 }}
+       className={cn("flex items-center gap-2 rounded-md bg-gradient-to-r p-2", gradient)}
+       style={{ opacity: 0.7 }}
+      >
+       <HardDrive className="h-3 w-3 text-white" />
+       <div className="flex flex-1 gap-0.5">
+        {[0, 1, 2].map((led) => (
+         <span key={led} className="h-1 w-1 rounded-full bg-white/80" />
+        ))}
+       </div>
+       <span className="text-[8px] font-bold text-white">U{u + 1}</span>
+      </motion.div>
+     ))}
+    </div>
+
+    <div className="mt-4 grid grid-cols-3 gap-2">
+     {[{ v: "NVMe", k: "Storage" }, { v: "100%", k: "Dedicated" }, { v: "Root", k: "Access" }].map((m, i) => (
+      <Floating key={m.k} index={i}>
+       <div className="rounded-xl border border-surface-border bg-white/70 p-2.5 text-center dark:border-white/10 dark:bg-white/5">
+        <p className="text-sm font-bold text-surface-heading dark:text-white">{m.v}</p>
+        <p className="text-[9px] font-medium uppercase tracking-wide text-surface-text dark:text-gray-400">{m.k}</p>
+       </div>
+      </Floating>
+     ))}
+    </div>
+   </GlassPanel>
+  </HeroStage>
+ );
+}
+
+/** VPS Hosting - resource allocation sliders. */
+function VpsHostingVisual({ gradient }: HeroVisualProps) {
+ return (
+  <HeroStage gradient={gradient}>
+   <GlassPanel>
+    <div className="flex items-center justify-between">
+     <div className="flex items-center gap-2">
+      <span className={cn("inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br text-white", gradient)}>
+       <Network className="h-4 w-4" />
+      </span>
+      <p className="text-xs font-bold text-surface-heading dark:text-white">VPS resources</p>
+     </div>
+     <span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">Scalable</span>
+    </div>
+
+    {/* Resource sliders */}
+    <div className="mt-4 space-y-3">
+     {[
+      { label: "vCPU", value: 4, max: 8, unit: "cores" },
+      { label: "RAM", value: 16, max: 32, unit: "GB" },
+      { label: "SSD", value: 200, max: 500, unit: "GB" },
+     ].map((res, i) => (
+      <div key={res.label}>
+       <div className="flex items-center justify-between text-[10px]">
+        <span className="font-semibold text-surface-text dark:text-gray-400">{res.label}</span>
+        <span className="font-bold text-surface-heading dark:text-white">{res.value} {res.unit}</span>
+       </div>
+       <div className="relative mt-1 h-2 rounded-full bg-surface-border dark:bg-white/10">
+        <motion.div
+         className={cn("h-full rounded-full bg-gradient-to-r", gradient)}
+         initial={{ width: 0 }}
+         animate={{ width: `${(res.value / res.max) * 100}%` }}
+         transition={{ duration: 1, ease: easeOut, delay: 0.2 + i * 0.1 }}
+        />
+        <motion.div
+         className={cn("absolute top-1/2 h-4 w-4 -translate-y-1/2 rounded-full border-2 border-white bg-gradient-to-br shadow-md", gradient)}
+         initial={{ left: 0 }}
+         animate={{ left: `calc(${(res.value / res.max) * 100}% - 8px)` }}
+         transition={{ duration: 1, ease: easeOut, delay: 0.2 + i * 0.1 }}
+        />
+       </div>
+      </div>
+     ))}
+    </div>
+
+    <div className="mt-4 grid grid-cols-2 gap-2">
+     {[{ v: "Root", k: "Full access" }, { v: "1-click", k: "Scale up" }].map((m, i) => (
+      <Floating key={m.k} index={i}>
+       <div className="rounded-xl border border-surface-border bg-white/70 p-2.5 text-center dark:border-white/10 dark:bg-white/5">
+        <p className="text-sm font-bold text-surface-heading dark:text-white">{m.v}</p>
+        <p className="text-[9px] font-medium uppercase tracking-wide text-surface-text dark:text-gray-400">{m.k}</p>
+       </div>
+      </Floating>
+     ))}
+    </div>
+   </GlassPanel>
+  </HeroStage>
+ );
+}
+
+/** Database Hosting - a database with replication nodes. */
+function DatabaseHostingVisual({ gradient }: HeroVisualProps) {
+ return (
+  <HeroStage gradient={gradient}>
+   <GlassPanel>
+    <div className="flex items-center justify-between">
+     <div className="flex items-center gap-2">
+      <span className={cn("inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br text-white", gradient)}>
+       <Database className="h-4 w-4" />
+      </span>
+      <p className="text-xs font-bold text-surface-heading dark:text-white">Managed database</p>
+     </div>
+     <span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">Replicated</span>
+    </div>
+
+    {/* Primary + replicas topology */}
+    <div className="mt-4 flex items-center justify-around">
+     <div className="flex flex-col items-center gap-1.5">
+      <motion.div
+       animate={{ scale: [1, 1.06, 1] }}
+       transition={{ duration: 2, repeat: Infinity }}
+       className={cn("flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br text-white shadow-md", gradient)}
+      >
+       <Database className="h-5 w-5" />
+      </motion.div>
+      <span className="text-[9px] font-bold text-surface-heading dark:text-white">Primary</span>
+     </div>
+     {/* connection lines */}
+     <div className="flex flex-1 justify-center">
+      <svg width="60" height="40" viewBox="0 0 60 40">
+       <motion.path d="M0,20 Q30,5 60,8" fill="none" stroke="#f59e0b" strokeWidth="1.5" strokeDasharray="3 3" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1, repeat: Infinity, repeatType: "reverse" }} />
+       <motion.path d="M0,20 Q30,35 60,32" fill="none" stroke="#ea580c" strokeWidth="1.5" strokeDasharray="3 3" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1, delay: 0.3, repeat: Infinity, repeatType: "reverse" }} />
+      </svg>
+     </div>
+     <div className="flex flex-col gap-2">
+      {[0, 1].map((r) => (
+       <div key={r} className="flex items-center gap-1">
+        <div className={cn("h-7 w-7 rounded-lg border-2 bg-gradient-to-br", gradient)} style={{ opacity: 0.6 }} />
+        <span className="text-[8px] font-semibold text-surface-text dark:text-gray-400">Replica {r + 1}</span>
+       </div>
+      ))}
+     </div>
+    </div>
+
+    <div className="mt-4 grid grid-cols-3 gap-2">
+     {[{ v: "Auto", k: "Backups" }, { v: "99.99%", k: "Uptime" }, { v: "<5m", k: "Recovery" }].map((m, i) => (
+      <Floating key={m.k} index={i}>
+       <div className="rounded-xl border border-surface-border bg-white/70 p-2.5 text-center dark:border-white/10 dark:bg-white/5">
+        <p className="text-sm font-bold text-surface-heading dark:text-white">{m.v}</p>
+        <p className="text-[9px] font-medium uppercase tracking-wide text-surface-text dark:text-gray-400">{m.k}</p>
+       </div>
+      </Floating>
+     ))}
+    </div>
+   </GlassPanel>
+  </HeroStage>
+ );
 }
 
 /** Fallback visual. */

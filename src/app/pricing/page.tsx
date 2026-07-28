@@ -1,7 +1,8 @@
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { PageHeader } from "@/components/sections/PageHeader";
-import { ServicesOverview } from "@/components/sections/ServicesOverview";
+import { ServicePackages } from "@/components/sections/ServicePackages";
+import { Faq } from "@/components/sections/Faq";
 import { CtaBand } from "@/components/sections/CtaBand";
 
 export default function PricingPage() {
@@ -10,16 +11,17 @@ export default function PricingPage() {
       <Navbar />
       <main className="section-stack">
         <PageHeader
-          eyebrow="Our services"
+          eyebrow="Packages"
           title={
             <>
-              Everything we do, <span className="text-gradient">all in one place</span>
+              Bundled solutions, <span className="text-gradient">built to fit</span>
             </>
           }
-          description="From marketing and analytics to web, mobile and security - explore the full range of services we offer. Tap any service to see the details."
+          description="Three ready-made packages that combine our most popular services - or browse by category and pick exactly what you need. Fully customizable, no lock-in."
         />
 
-        <ServicesOverview />
+        <ServicePackages />
+        <Faq />
         <CtaBand />
       </main>
       <Footer />
