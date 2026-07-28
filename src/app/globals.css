@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+ :root {
+ --background: #ffffff;
+ --foreground: #111827;
+ }
+
+ html {
+ scroll-behavior: smooth;
+ -webkit-font-smoothing: antialiased;
+ -moz-osx-font-smoothing: grayscale;
+ text-rendering: optimizeLegibility;
+ }
+
+ body {
+ background-color: #ffffff;
+ color: #111827;
+ }
+
+ .dark body {
+ background-color: #070a12;
+ color: #f9fafb;
+ }
+
+ /* Visible focus outline for keyboard users across interactive elements. */
+ :focus-visible {
+ outline: 2px solid #7c3aed;
+ outline-offset: 2px;
+ border-radius: 6px;
+ }
+
+ /* Style native <select> dropdown menus so they read correctly in dark mode.
+ Browsers render <option> lists using the OS theme by default, which clashes
+ with our dark UI. We force a consistent look. */
+ .dark select option,
+ .dark option {
+ background-color: #111827;
+ color: #f9fafb;
+ }
+
+ /* Fix browser autofill: Chrome/Edge force a light background + dark text on
+ autofilled inputs, which looks broken in dark mode. Override to match the
+ dark theme while keeping the text readable. */
+ .dark input:-webkit-autofill,
+ .dark input:-webkit-autofill:hover,
+ .dark input:-webkit-autofill:focus,
+ .dark textarea:-webkit-autofill,
+ .dark select:-webkit-autofill {
+ -webkit-text-fill-color: #ffffff;
+ -webkit-box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0.05) inset;
+ transition: background-color 9999s ease-in-out 0s;
+ caret-color: #ffffff;
+ }
+
+ /* Improve native select arrow visibility in dark mode. */
+ .dark select {
+ background-image: none;
+ }
+
+ /* Tighter default rhythm so sections sit closer together. */
+ section {
+ scroll-margin-top: 6rem;
+ }
+}
+
+@layer components {
+ /* Each <section> owns its own vertical padding (py-16 sm:py-20), so the stack
+ adds NO extra margin between siblings. This was the root cause of the
+ "too much blank space" bug - section padding + margin were stacking up to
+ ~250px of empty space. Now spacing is one consistent value per section. */
+ main.section-stack > section + section {
+ margin-top: 0;
+ }
+}
+
+@layer utilities {
+ /* Solid panel (blur removed site-wide for crisp rendering). */
+ .glass-panel {
+ background-color: rgba(255, 255, 255, 0.98);
+ }
+
+ .dark .glass-panel {
+ background-color: rgba(17, 24, 39, 0.98);
+ }
+
+ /* Animated gradient sweep used on the CTA background. */
+ .cta-gradient {
+ background-image: linear-gradient(
+ 110deg,
+ rgba(124, 58, 237, 0.08) 0%,
+ rgba(168, 85, 247, 0.12) 35%,
+ rgba(255, 255, 255, 0.5) 70%,
+ rgba(124, 58, 237, 0.06) 100%
+ );
+ background-size: 220% 220%;
+ }
+
+ .dark .cta-gradient {
+ background-image: linear-gradient(
+ 110deg,
+ rgba(124, 58, 237, 0.18) 0%,
+ rgba(168, 85, 247, 0.22) 35%,
+ rgba(31, 41, 55, 0.4) 70%,
+ rgba(124, 58, 237, 0.14) 100%
+ );
+ }
+
+ /* Reusable primary-to-secondary gradient text + backgrounds. */
+ .text-gradient {
+ background-image: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+ -webkit-background-clip: text;
+ background-clip: text;
+ -webkit-text-fill-color: transparent;
+ color: transparent;
+ }
+
+ .bg-brand-gradient {
+ background-image: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+ }
+}
