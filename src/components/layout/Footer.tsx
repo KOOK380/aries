@@ -58,7 +58,7 @@ export function Footer() {
  <ul className="flex flex-col gap-2 text-sm text-surface-text sm:flex-row sm:gap-6 dark:text-gray-400">
 	 <li className="flex items-center gap-2">
 	 <Mail className="h-4 w-4 text-brand-primary" />
-	 info@ariestechnologies.tech
+	 info@ariestechnologies.ae
 	 </li>
 	 <li className="flex items-center gap-2">
 	 <Phone className="h-4 w-4 text-brand-primary" />
