@@ -8,7 +8,7 @@ import { MegaMenu } from "./MegaMenu";
 import { services } from "./services";
 import { ServiceCard } from "./ServiceCard";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
-import { LogoIcon } from "@/components/ui/LogoIcon";
+import { LogoImage } from "@/components/ui/LogoImage";
 import { cn } from "@/lib/utils";
 
 const PRIMARY_LINKS = [
@@ -95,12 +95,9 @@ export function Navbar() {
  {/* Brand ---------------------------------------------------------- */}
  <Link
  href="/"
- className="flex items-center gap-2.5 rounded-full px-2 py-1 focus-visible:outline-none"
+ className="flex items-center rounded-full px-2 py-1 focus-visible:outline-none"
  >
- <LogoIcon />
- <span className="text-lg font-extrabold tracking-tight text-surface-heading dark:text-white">
- Aries<span className="text-gradient">Tech</span>
- </span>
+ <LogoImage />
  </Link>
 
  {/* Desktop links -------------------------------------------------- */}

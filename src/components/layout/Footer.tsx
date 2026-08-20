@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { LogoIcon } from "@/components/ui/LogoIcon";
+import { LogoImage } from "@/components/ui/LogoImage";
 import { NewsletterForm } from "./NewsletterForm";
 import { footerColumns, socialLinks } from "./footer-data";
 
@@ -16,11 +16,8 @@ export function Footer() {
  <div className="grid gap-10 py-12 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr] lg:gap-8">
  {/* Brand + newsletter */}
  <div className="max-w-sm">
- <Link href="/" className="inline-flex items-center gap-2.5">
- <LogoIcon />
- <span className="text-lg font-extrabold tracking-tight text-surface-heading dark:text-white">
- Aries<span className="text-gradient">Tech</span>
- </span>
+ <Link href="/" className="inline-flex items-center">
+ <LogoImage />
  </Link>
  <p className="mt-4 text-sm leading-relaxed text-surface-text dark:text-gray-400">
  A full-service digital partner building, growing and protecting ambitious brands.
