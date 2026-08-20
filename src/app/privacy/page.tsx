@@ -53,12 +53,12 @@ export default function PrivacyPage() {
               <h2>Your rights</h2>
               <p>
                 Depending on your location, you may have the right to access, correct or delete your
-                personal data. To exercise these rights, email us at hello@ariestech.example.
+                personal data. To exercise these rights, email us at info@ariestechnologies.tech.
               </p>
 
               <h2>Contact</h2>
               <p>
-                Questions about this policy? Reach out at hello@ariestech.example and we'll be happy
+                Questions about this policy? Reach out at info@ariestechnologies.tech and we'll be happy
                 to help.
               </p>
             </LegalProse>

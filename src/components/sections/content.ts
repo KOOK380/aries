@@ -551,7 +551,7 @@ export interface ContactDetail {
 }
 
 export const contactDetails: ContactDetail[] = [
-  { icon: Mail, label: "Email", value: "hello@ariestech.example" },
-  { icon: Phone, label: "Phone", value: "+1 (555) 014-2278" },
-  { icon: MapPin, label: "Location", value: "Remote-first · global team" },
+  { icon: Mail, label: "Email", value: "info@ariestechnologies.tech" },
+  { icon: Phone, label: "Phone", value: "+971 26 34 54 03" },
+  { icon: MapPin, label: "Location", value: "Al-Otaiba Building, Najda - Abu Dhabi, UAE" },
 ];

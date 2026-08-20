@@ -55,7 +55,7 @@ export default function TermsPage() {
 
               <h2>Contact</h2>
               <p>
-                Questions about these terms? Email us at hello@ariestech.example.
+                Questions about these terms? Email us at info@ariestechnologies.tech.
               </p>
             </div>
           </Container>

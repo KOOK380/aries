@@ -59,18 +59,18 @@ export function Footer() {
  {/* Contact + socials */}
  <div className="flex flex-col gap-6 border-t border-surface-border py-6 md:flex-row md:items-center md:justify-between dark:border-white/10">
  <ul className="flex flex-col gap-2 text-sm text-surface-text sm:flex-row sm:gap-6 dark:text-gray-400">
- <li className="flex items-center gap-2">
- <Mail className="h-4 w-4 text-brand-primary" />
- hello@ariestech.example
- </li>
- <li className="flex items-center gap-2">
- <Phone className="h-4 w-4 text-brand-primary" />
- +1 (555) 014-2278
- </li>
- <li className="flex items-center gap-2">
- <MapPin className="h-4 w-4 text-brand-primary" />
- Remote-first · global
- </li>
+	 <li className="flex items-center gap-2">
+	 <Mail className="h-4 w-4 text-brand-primary" />
+	 info@ariestechnologies.tech
+	 </li>
+	 <li className="flex items-center gap-2">
+	 <Phone className="h-4 w-4 text-brand-primary" />
+	 +971 26 34 54 03
+	 </li>
+	 <li className="flex items-center gap-2">
+	 <MapPin className="h-4 w-4 text-brand-primary" />
+	 Al-Otaiba Building, Najda - Abu Dhabi, UAE
+	 </li>
  </ul>
 
  <ul className="flex items-center gap-2">

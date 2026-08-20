@@ -60,7 +60,7 @@ export default function CookiesPage() {
               </p>
 
               <h2>Contact</h2>
-              <p>Questions about cookies? Email us at hello@ariestech.example.</p>
+              <p>Questions about cookies? Email us at info@ariestechnologies.tech.</p>
             </div>
           </Container>
         </section>
