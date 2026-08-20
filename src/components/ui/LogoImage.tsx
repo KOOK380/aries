@@ -14,8 +14,8 @@ interface LogoImageProps {
  * on the client (avoids hydration mismatch).
  *
  * Place your files at:
- *   public/logos/logo-dark.svg   (for dark mode)
- *   public/logos/logo-light.svg  (for light mode)
+ *   public/logos/logo-dark.png   (for dark mode)
+ *   public/logos/logo-light.png  (for light mode)
  */
 export function LogoImage({ className }: LogoImageProps) {
   const { resolvedTheme } = useTheme();
@@ -24,8 +24,8 @@ export function LogoImage({ className }: LogoImageProps) {
   useEffect(() => setMounted(true), []);
 
   const src = mounted && resolvedTheme === "dark"
-    ? "/logos/logo-dark.svg"
-    : "/logos/logo-light.svg";
+    ? "/logos/logo-dark.png"
+    : "/logos/logo-light.png";
 
   return (
     <img
