@@ -14,8 +14,8 @@ const config: Config = {
       },
       colors: {
         brand: {
-          primary: "#7C3AED",
-          secondary: "#A855F7",
+          primary: "#6D1F37",
+          secondary: "#B91C1C",
         },
         surface: {
           base: "#FFFFFF",

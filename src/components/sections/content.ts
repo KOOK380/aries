@@ -200,7 +200,7 @@ export const integrations: Integration[] = [
     name: "Klaviyo",
     category: "Marketing",
     icon: Mail,
-    accent: "from-violet-600 to-purple-700",
+    accent: "from-[#6D1F37] to-[#B91C1C]",
   },
   // --- Development ---
   {
@@ -244,7 +244,7 @@ export const integrations: Integration[] = [
     name: "Sentry",
     category: "Security",
     icon: Bug,
-    accent: "from-purple-500 to-fuchsia-600",
+    accent: "from-[#6D1F37] to-[#B91C1C]",
   },
   {
     id: "encryption",
@@ -286,7 +286,7 @@ export const caseStudies: CaseStudy[] = [
       { value: "-38%", label: "Cost per acquisition" },
     ],
     tags: ["Google Ads", "Meta Ads", "CRO"],
-    accent: "from-[#7C3AED] to-[#A855F7]",
+    accent: "from-[#6D1F37] to-[#B91C1C]",
   },
   {
     id: "lumio-saas",
@@ -298,7 +298,7 @@ export const caseStudies: CaseStudy[] = [
       { value: "62%", label: "Faster sales cycle" },
     ],
     tags: ["SEO", "Content", "LinkedIn Ads"],
-    accent: "from-[#6366F1] to-[#8B5CF6]",
+    accent: "from-[#6D1F37] to-[#B91C1C]",
   },
   {
     id: "vertex-local",
@@ -347,7 +347,7 @@ export const testimonials: Testimonial[] = [
     role: "Founder, Lumio",
     initials: "DC",
     rating: 5,
-    accent: "from-indigo-500 to-violet-500",
+    accent: "from-[#6D1F37] to-[#B91C1C]",
   },
   {
     id: "t3",
@@ -387,7 +387,7 @@ export const testimonials: Testimonial[] = [
     role: "CEO, Cobalt",
     initials: "MB",
     rating: 5,
-    accent: "from-fuchsia-500 to-purple-500",
+    accent: "from-[#6D1F37] to-[#B91C1C]",
   },
   {
     id: "t7",
@@ -417,7 +417,7 @@ export const testimonials: Testimonial[] = [
     role: "E-commerce Lead, Lumio",
     initials: "AB",
     rating: 5,
-    accent: "from-violet-600 to-purple-700",
+    accent: "from-[#6D1F37] to-[#B91C1C]",
   },
 ];
 

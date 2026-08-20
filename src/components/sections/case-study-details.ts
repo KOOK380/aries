@@ -143,7 +143,7 @@ export const caseStudyDetails: CaseStudyDetail[] = [
       "How we built a full-funnel paid + email engine for N**D that tripled ROAS and turned a stalled brand into a category contender.",
     summary:
       "N**D had a great product but plateaued revenue and rising ad costs. We rebuilt their paid media, email automation, and creative testing system - and compounded the wins into 7-figure run rate.",
-    accent: "from-violet-600 to-fuchsia-500",
+    accent: "from-[#6D1F37] to-[#B91C1C]",
     tags: ["Performance Marketing", "Paid Social", "Email", "CRO"],
     metrics: [
       { value: "3.4x", label: "Return on ad spend" },

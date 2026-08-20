@@ -54,11 +54,11 @@ export interface CategoryTheme {
 
 export const categoryThemes: Record<ServiceCategory, CategoryTheme> = {
   marketing: {
-    gradient: "from-violet-600 to-fuchsia-500",
-    accent: "text-violet-600",
+    gradient: "from-[#6D1F37] to-[#B91C1C]",
+    accent: "text-[#6D1F37]",
     label: "Marketing",
-    ring: "ring-violet-500/40",
-    colors: ["#7c3aed", "#d946ef"],
+    ring: "ring-[#6D1F37]/40",
+    colors: ["#6D1F37", "#B91C1C"],
   },
   development: {
     gradient: "from-sky-500 to-indigo-600",

@@ -43,7 +43,7 @@ export function LogoIcon({ boxSize = "h-9 w-9", className }: LogoIconProps) {
           className="absolute inset-[-60%]"
           style={{
             background:
-              "conic-gradient(from 0deg, #7c3aed, #d946ef, #6366f1, #a855f7, #7c3aed)",
+              "conic-gradient(from 0deg, #6D1F37, #B91C1C, #9F1239, #881337, #6D1F37)",
           }}
           animate={{ rotate: 360 }}
           transition={{ duration: 7, repeat: Infinity, ease: "linear" }}
